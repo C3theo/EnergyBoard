@@ -1,0 +1,53 @@
+/dts-v1/;
+/plugin/;
+
+/{ /* root node */
+  compatible = "ti,beaglebone", "ti,beaglebone-black";
+  part-number = "BBB-I2C2"; 
+  version = "00A0";
+
+  fragment@0 {
+    target = <&am33xx_pinmux>; 
+
+    __overlay__ {
+      i2c2_pins: pinmux_i2c2_pins {
+        pinctrl-single,pins = <
+          0x178 0x73 /* spi0_d1.i2c2_sda */ 
+          0x17C 0x73 /* spi0_cs0.i2c2_scl */
+        >;
+      };
+    };
+  };
+  
+  fragment@1 {
+    target = <&i2c2>;
+
+    __overlay__ {
+      pinctrl-0 = <&i2c2_pins>; 
+
+      clock-frequency = <100000>; 
+      status = "okay";
+	  
+      mcp23017: mcp23017@21 { /* GPIO expander */
+        compatible = "microchip, mcp23s08";
+        #address-cells = <1>;
+        #size-cells = <0>;
+        reg = <0x21>;
+	 };
+	 ad7997:ad7997@24{ /* ADC */ 
+		compatible = "analogdevices, ad799x"; // check vendor ID
+        #address-cells = <1>;
+        #size-cells = <0>;
+        reg = <0x24>;
+		
+	 };
+	 mcp4728:mcp4728@68{ /* DAC */
+		compatible = "microchip, mcp4728";
+		#address-cells = <1>;
+        #size-cells = <0>;
+        reg = <0x68>;
+		
+      };
+    };
+  };
+}; /* root node end */
