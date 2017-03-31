@@ -7,8 +7,6 @@
 #ifndef BUSDEVICE_H_
 #define BUSDEVICE_H_
 
-namespace exploringRPi {
-
 /**
  * @class BusDevice
  * @brief This class is the parent of I2C and SPI devices, so that devices that use both
@@ -33,6 +31,6 @@ public:
 	virtual ~BusDevice();
 };
 
-} /* namespace exploringRPi */
+
 
 #endif /* BUSDEVICE_H_ */

@@ -26,10 +26,10 @@
 #define I2C_H_
 #include"BusDevice.h"
 
-#define RPI_I2C_0 "/dev/i2c-0"
-#define RPI_I2C_1 "/dev/i2c-1"
+#define BBB_I2C_0 "/dev/i2c-0"
+#define BBB_I2C_1 "/dev/i2c-1"
 
-namespace exploringRPi{
+namespace energyBoard{
 
 /**
  * @class I2CDevice
@@ -49,6 +49,6 @@ public:
 	virtual ~I2CDevice();
 };
 
-} /* namespace exploringRPi */
+} /* namespace energyBoard */
 
 #endif /* I2C_H_ */

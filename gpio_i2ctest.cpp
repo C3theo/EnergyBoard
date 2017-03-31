@@ -1,6 +1,6 @@
 /* 
 	gpio_i2ctest.cpp
-
+ Flash D2 repeatedly from user input
 */
 
 #include <iostream>
@@ -8,32 +8,37 @@
 #include "gpioExpander.h"
 
 using namespace std;
-using namespace exploringRPi;
+
 
 int main(){
+	
    unsigned char value;
-   cout << "Starting the SPI GPIO Expander Example" << endl;
-   I2CDevice *i2cDevice = new I2CDevice(1,0x20);
+   I2CDevice *i2cDevice = new I2CDevice(1,0x21);
 
    i2cDevice->open();  // Open for the following comands -- close afterwards
    i2cDevice->writeRegister(0x05, 0b10111010); //set up the MCP23017
+   
    cout << "Set up the Control Register - IOCON (0x05)" << endl;
+   
+   // LED Control 
 
-   i2cDevice->writeRegister(0x00, 0b00000000); //set all of PORTA as outputs
-   cout << "Set up PORTA as outputs using - IODIRA (0x00)" << endl;
+   cin >> count >> endl;
+   
+   
+   
+   i2cDevice->writeRegister(0x01, 0b00000000); //set all of PORTA as outputs
+   cout << "Set up PORTB (GPIOB_OO) as outputs using - IODIRB (0x00)" << endl;
 
-   i2cDevice->writeRegister(0x0A, 0b01010101); //set alternate outputs on/off
-   cout << "Set outputs on PORT A with alternate on/off outputs" << endl;
+ 
 
-   value = i2cDevice->readRegister(0x05); // check that IOCON was set above
+   value = i2cDevice->readRegister(0x05); // check that IOCON was set 
    cout << "At IOCON Received [" << (int)value << "]" << endl;
 
    value = i2cDevice->readRegister(0x09); // check that IOCON was set above
    cout << "At GPIOA Received [" << (int)value << "]" << endl;
 
-   value = i2cDevice->readRegister(0x0A); // check that IOCON was set above
-   cout << "At OLATA Received [" << (int)value << "]" << endl;
+   value = i2cDevice->readRegister(0x13); // check that IOCON was set above
+   cout << "At OLATB Received [" << (int)value << "]" << endl;
 
    i2cDevice->close();
-   cout << "End of the GPIO Expander Example" << endl;
 }

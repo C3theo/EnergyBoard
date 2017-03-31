@@ -6,7 +6,7 @@
 
 #include "BusDevice.h"
 
-namespace exploringRPi {
+namespace energyBoard {
 
 BusDevice::BusDevice(unsigned int bus, unsigned int device) {
 	this->bus = bus;
@@ -16,4 +16,4 @@ BusDevice::BusDevice(unsigned int bus, unsigned int device) {
 
 BusDevice::~BusDevice() {}
 
-} /* namespace exploringRPi */
+} /* namespace energyBoard */

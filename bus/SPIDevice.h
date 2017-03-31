@@ -12,7 +12,7 @@
 
 #define SPI_PATH "/dev/spidev"
 
-namespace exploringRPi{
+namespace energyBoard{
 
 /**
  * @class SPIDevice
@@ -55,6 +55,6 @@ private:
 	uint16_t delay;
 };
 
-} /* namespace exploringRPi */
+} /* namespace energyBoard */
 
 #endif /* SPIDEVICE_H_ */

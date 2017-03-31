@@ -22,7 +22,7 @@ using namespace std;
 
 #define HEX(x) setw(2) << setfill('0') << hex << (int)(x)
 
-namespace exploringRPi {
+namespace energyBoard {
 
 /**
  * The constructor for the SPIDevice that sets up and opens the SPI connection.
@@ -190,4 +190,4 @@ SPIDevice::~SPIDevice() {
 	this->close();
 }
 
-} /* namespace exploringRPi */
+} /* namespace energyBoard */
